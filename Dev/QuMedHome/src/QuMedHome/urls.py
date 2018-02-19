@@ -16,9 +16,12 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from referrals.views import home
+from profiles.views import home, referrals, appointments, contact
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', home),
+    url(r'^referrals/$', referrals),
+    url(r'^appointments/$', appointments),
+    url(r'^contact/$', contact),
 ]

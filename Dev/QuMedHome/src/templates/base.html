@@ -1,27 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
-
+    <title>{% block head_title %}QuMed.com{% endblock head_title %}</title>
+    {% include 'snippets/css.html' %}
 </head>
 <body>
-<h1>Hello World</h1>
+{% include 'snippets/nav.html' %}
+<div class="container">
 
-<p>This is {{html_var}} coming through</p>
-<p>
-    {% if bool_item %}
-    random number is {{ num }}
-    {% endif%}
-</p>
-<p>
-    {% for some_item in some_list %}
-        {% if some_item|divisibleby:"2" %}
-            Even Number
-        {% else %}
-            Odd Number
-        {% endif %}
-        {{some_item}}</br>
-    {% endfor%}
-</p>
+    {% block content %}
 
+    Hello there
+
+    {% endblock content %}
+</div>
+
+{% include 'snippets/js.html' %}
 </body>
 </html>
