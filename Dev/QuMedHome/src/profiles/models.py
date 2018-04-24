@@ -4,3 +4,4 @@ from django.db import models
 class Office(models.Model):
     name = models.CharField(max_length=120)
     location = models.CharField(max_length=120, null=True, blank=True)
+    email = models.CharField(max_length=120, null=True, blank=True)
