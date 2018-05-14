@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block head_title %}Offices || {{ block.super}}{% endblock head_title %}
+
+{% block content %}
+
+<h1>Office list</h1>
+
+<ul>
+    {% for obj in object_list%}
+        <li>{{ obj.name }}, {{ obj.location }}, {{ obj.email }}, {{ obj.phone }}
+        ,{{ obj.timestamp }}, {{ obj.updated }}</li>
+
+    {% endfor %}
+
+</ul>
+
+{% endblock content %}

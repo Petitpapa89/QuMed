@@ -3,24 +3,28 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views import View
 from django.views.generic.base import TemplateView
+from django.views.generic import TemplateView, ListView
+
+from .models import Office
+
+def office_list_view(request):
+    template_name = 'offices/offices_list.html'
+    query_set = Office.objects.all()
+    context = {
+        'object_list': query_set
+    }
+    return render(request, template_name, context)
+
+class OfficeListView(ListView):
+    queryset = Office.objects.all()
+    template_name = 'offices/offices_list.html'
 
 
-# Create your views here.
+class USOfficeListView(ListView):
+    queryset = Office.objects.filter(country__iexact="usa")
+    template_name = 'offices/offices_list.html'
 
-# class based views
-class HomeView(TemplateView):
-    """"""
-    template_name = "home.html"
-
-    def get_context_data(self, *args, **kwargs):
-        context = super(HomeView, self).get_context_data(*args, **kwargs)
-        num = None
-        some_list = [random.randint(0, 100000), random.randint(0, 100000), random.randint(0, 100000)]
-        condition_bool_item = True
-        if condition_bool_item:
-            num = random.randint(0, 100000)
-        context = {'html_var': True,
-                   'num': num,
-                   'some_list': some_list}
-        return context
+class ForeignOfficeListView(ListView):
+    queryset = Office.objects.exclude(country__iexact="usa")
+    template_name = 'offices/offices_list.html'
 
