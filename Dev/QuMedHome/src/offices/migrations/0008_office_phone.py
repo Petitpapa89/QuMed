@@ -9,7 +9,7 @@ import phonenumber_field.modelfields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('profiles', '0007_auto_20180513_1801'),
+        ('offices', '0007_auto_20180513_1801'),
     ]
 
     operations = [

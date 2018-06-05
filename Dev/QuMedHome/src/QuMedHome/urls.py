@@ -17,15 +17,17 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.views.generic.base import TemplateView
 
-from profiles.views import (office_list_view, OfficeListView, USOfficeListView, ForeignOfficeListView)
+from offices.views import (office_list_view,
+                            OfficeListView
+                            )
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', TemplateView.as_view(template_name='home.html')),
     url(r'^referrals/$', TemplateView.as_view(template_name="referrals.html")),
     url(r'^offices/$', OfficeListView.as_view()),
-    url(r'^offices/us/$', USOfficeListView.as_view()),
-    url(r'^offices/int/$', ForeignOfficeListView.as_view()),
+    url(r'^offices/(?P<slug>\w+)/$', OfficeListView.as_view()),
+
     url(r'^appointments/$', TemplateView.as_view(template_name="appointments.html")),
     url(r'^contact/$', TemplateView.as_view(template_name="contact.html")),
 ]
