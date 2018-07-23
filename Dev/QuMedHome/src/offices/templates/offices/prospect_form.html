@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block head_title %} Enquire about QuMed App|| {{ block.super}}{% endblock head_title %}
+
+{% block content %}
+
+<h1>Enquire about QuMed App</h1>
+
+<form>
+    <input type="text" name="first_name" placeholder="First Name"><br/>
+    <input type="text" name="last_name" placeholder="Last Name"><br/>
+    <input type="text" name="business_email" placeholder="Email"><br/>
+    <input type="text" name="company_name" placeholder="Company Name"><br/>
+    <input type="text" name="job_title" placeholder="Job Title"><br/>
+    <input type="text" name="phone_number" placeholder="5553334444"><br/>
+    <input type="text" name="city" placeholder="City"><br/>
+    <input type="text" name="state" placeholder="State"><br/>
+    <input type="text" name="comment" placeholder="Comment"><br/>
+
+    <button type="submit">Save</button>
+</form>
+
+{% endblock content %}

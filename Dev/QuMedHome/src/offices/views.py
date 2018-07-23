@@ -6,6 +6,7 @@ from django.views import View
 from django.views.generic.base import TemplateView
 from django.views.generic import TemplateView, ListView, DetailView
 
+from .forms import ProspectCreateForm
 from .models import Office
 
 
@@ -14,6 +15,13 @@ def office_list_view(request):
     query_set = Office.objects.all()
     context = {
         'object_list': query_set
+    }
+    return render(request, template_name, context)
+
+def prospect_create_view(request):
+
+    template_name = 'offices/prospect_form.html'
+    context = {
     }
     return render(request, template_name, context)
 
@@ -32,7 +40,7 @@ class OfficeListView(ListView):
 
 
 class OfficeDetailView(DetailView):
-    queryset = Office.objects.all()
+    queryset = Office.objects.all()  #filter(country__iexact='USA')
 
     # def get_object(self, *args, **kwargs):
     #     off_id = self.kwargs.get('off_id')

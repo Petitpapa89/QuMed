@@ -19,7 +19,8 @@ from django.views.generic.base import TemplateView
 
 from offices.views import (office_list_view,
                            OfficeListView,
-                           OfficeDetailView)
+                           OfficeDetailView,
+                           prospect_create_view)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -31,4 +32,6 @@ urlpatterns = [
 
     url(r'^appointments/$', TemplateView.as_view(template_name="appointments.html")),
     url(r'^contact/$', TemplateView.as_view(template_name="contact.html")),
+
+    url(r'^create/$', prospect_create_view),
 ]
