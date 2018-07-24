@@ -1,6 +1,6 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Office
+from .models import Prospect
 
-admin.site.register(Office)
+admin.site.register(Prospect)

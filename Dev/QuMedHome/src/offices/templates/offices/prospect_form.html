@@ -6,7 +6,7 @@
 
 <h1>Enquire about QuMed App</h1>
 
-<form>
+<form method="POST"> {% csrf_token %}
     <input type="text" name="first_name" placeholder="First Name"><br/>
     <input type="text" name="last_name" placeholder="Last Name"><br/>
     <input type="text" name="business_email" placeholder="Email"><br/>

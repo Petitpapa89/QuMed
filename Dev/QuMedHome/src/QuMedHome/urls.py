@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', TemplateView.as_view(template_name='home.html')),
     url(r'^referrals/$', TemplateView.as_view(template_name="referrals.html")),
-    url(r'^offices/$', OfficeListView.as_view()),
+    url(r'^prospects/$', OfficeListView.as_view()),
     # url(r'^offices/(?P<slug>\w+)/$', OfficeListView.as_view()),
     url(r'^offices/(?P<slug>[\w-]+)/$', OfficeDetailView.as_view()),
 

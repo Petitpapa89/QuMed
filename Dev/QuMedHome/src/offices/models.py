@@ -9,15 +9,15 @@ phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
                              message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
 
 
-class Office(models.Model):
-    name = models.CharField(max_length=120)
+class Prospect(models.Model):
+    first_name = models.CharField(max_length=120, null=True, blank=True)
+    last_name = models.CharField(max_length=120, null=True, blank=True)
+    business_email = models.EmailField(max_length=120, null=True, blank=True)
+    company_name = models.CharField(max_length=120, null=True, blank=True)
+    job_title = models.CharField(max_length=120, null=True, blank=True)
+    phone_number = models.CharField(validators=[phone_regex], max_length=17, blank=True)  # validators should be a list
     city = models.CharField(max_length=120, null=True, blank=True)
     state = models.CharField(max_length=120, null=True, blank=True)
-    country = models.CharField(max_length=120, null=True, blank=True)
-    email = models.EmailField(max_length=120, null=True, blank=True)
-    type = models.CharField(max_length=120, null=True, blank=True)
-    phone_number = models.CharField(validators=[phone_regex], max_length=17, blank=True)  # validators should be a list
-
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
@@ -25,11 +25,11 @@ class Office(models.Model):
     slug = models.SlugField(null=True, blank=True)
 
     def __str__(self):
-        return self.name
+        return self.company_name
 
     @property
     def title(self):
-        return self.name  # obj.tile
+        return self.company_name  # obj.tiletile
 
 
 def off_pre_save_receiver(sender, instance, *args, **kwargs):
@@ -42,9 +42,9 @@ def off_pre_save_receiver(sender, instance, *args, **kwargs):
 #     print(instance.timestamp)
 #     if not instance.slug:
 #         instance.slug = unique_slug_generator(instance)
-#         instance.save()
+#         instance.save(# )
 
 
-pre_save.connect(off_pre_save_receiver, sender=Office)
+pre_save.connect(off_pre_save_receiver, sender=Prospect)
 
 # post_save.connect(off_post_save_receiver, sender=Office)
