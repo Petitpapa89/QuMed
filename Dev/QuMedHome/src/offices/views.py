@@ -11,36 +11,26 @@ from .models import Prospect
 
 
 def prospect_create_view(request):
-    # if request.method == 'GET':
-    #     print('get data')
-
-    if request.method == 'POST':
-        print('post data')
-        print(request.POST)
-        first_name = request.POST.get('first_name')  # PUT for APIs
-        last_name = request.POST.get('last_name')
-        business_email = request.POST.get('business_email')
-        company_name = request.POST.get('company_name')
-        job_title = request.POST.get('job_title')
-        phone_number = request.POST.get('phone_number')
-        city = request.POST.get('city')
-        state = request.POST.get('state')
+    form = ProspectCreateForm(request.POST or None)
+    errors = None
+    if form.is_valid():
         obj = Prospect.objects.create(
-                first_name=first_name,
-                last_name=last_name,
-                business_email=business_email,
-                company_name=company_name,
-                job_title=job_title,
-                phone_number=phone_number,
-                city=city,
-                state=state,
-
+                first_name=form.cleaned_data.get('first_name'),
+                last_name=form.cleaned_data.get('last_name'),
+                business_email=form.cleaned_data.get('business_email'),
+                company_name=form.cleaned_data.get('company_name'),
+                job_title=form.cleaned_data.get('job_title'),
+                phone_number=form.cleaned_data.get('phone_number'),
+                city=form.cleaned_data.get('city'),
+                state=form.cleaned_data.get('state'),
         )
         return HttpResponseRedirect("/prospects")
 
+    if form.errors:
+        errors = form.errors
+
     template_name = 'offices/prospect_form.html'
-    context = {
-    }
+    context = {'form': form, 'errors': errors}
     return render(request, template_name, context)
 
 

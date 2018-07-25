@@ -4,10 +4,11 @@
 
 {% block content %}
 
-<!--<h1>{{ object.first_name }} {{ object.last_name }}</h1>-->
-<!--<p>{{ object.city }}</p>-->
-<!--<p>{{object.state}}</p>-->
-<!--<p>{{object.business_email}}</p>-->
+<h1>{{ object.company_name }}</h1>
+<p>{{ object.first_name }} {{ object.last_name }}</p>
+<p>{{ object.city }}</p>
+<p>{{object.state}}</p>
+<p>{{object.business_email}}</p>
 <p>{{object.timestamp}}, Updated {{object.updated|timesince}} ago</p>
 
 

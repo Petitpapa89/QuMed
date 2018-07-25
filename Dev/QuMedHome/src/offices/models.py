@@ -15,7 +15,7 @@ class Prospect(models.Model):
     business_email = models.EmailField(max_length=120, null=True, blank=True)
     company_name = models.CharField(max_length=120, null=True, blank=True)
     job_title = models.CharField(max_length=120, null=True, blank=True)
-    phone_number = models.CharField(validators=[phone_regex], max_length=17, blank=True)  # validators should be a list
+    phone_number = models.CharField(validators=[phone_regex], max_length=17, null=True, blank=True)  # validators should be a list
     city = models.CharField(max_length=120, null=True, blank=True)
     state = models.CharField(max_length=120, null=True, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
