@@ -1,5 +1,6 @@
 from django import forms
 from django.core.validators import RegexValidator
+from .models import Prospect
 
 # Create your models here.
 phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
@@ -12,7 +13,8 @@ class ProspectCreateForm(forms.Form):
     business_email = forms.EmailField(required=False)
     company_name = forms.CharField(required=False)
     job_title = forms.CharField(required=False)
-    phone_number = forms.CharField(validators=[phone_regex], max_length=17, required=False)  # validators should be a list
+    phone_number = forms.CharField(validators=[phone_regex], max_length=17,
+                                   required=False)  # validators should be a list
     city = forms.CharField(required=False)
     state = forms.CharField(required=False)
     comment = forms.CharField(required=False)
@@ -23,3 +25,17 @@ class ProspectCreateForm(forms.Form):
             raise forms.ValidationError("Not a valid name")
         return name
 
+
+class ProspectModelCreateForm(forms.ModelForm):
+    class Meta:
+        model = Prospect
+        fields = [
+            'first_name',
+            'last_name',
+            'business_email',
+            'company_name',
+            'job_title',
+            'phone_number',
+            'city',
+            'state',
+        ]

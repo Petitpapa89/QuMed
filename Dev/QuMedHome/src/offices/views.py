@@ -4,27 +4,19 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View
 from django.views.generic.base import TemplateView
-from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic import TemplateView, DetailView, CreateView , ListView
+# from django.views.generic.list import ListView
 
-from .forms import ProspectCreateForm
+from .forms import ProspectCreateForm, ProspectModelCreateForm
 from .models import Prospect
 
 
 def prospect_create_view(request):
-    form = ProspectCreateForm(request.POST or None)
+    form = ProspectModelCreateForm(request.POST or None)
     errors = None
     if form.is_valid():
-        obj = Prospect.objects.create(
-                first_name=form.cleaned_data.get('first_name'),
-                last_name=form.cleaned_data.get('last_name'),
-                business_email=form.cleaned_data.get('business_email'),
-                company_name=form.cleaned_data.get('company_name'),
-                job_title=form.cleaned_data.get('job_title'),
-                phone_number=form.cleaned_data.get('phone_number'),
-                city=form.cleaned_data.get('city'),
-                state=form.cleaned_data.get('state'),
-        )
-        return HttpResponseRedirect("/prospects")
+        form.save()
+        return HttpResponseRedirect("/prospects/")
 
     if form.errors:
         errors = form.errors
@@ -45,7 +37,8 @@ def office_list_view(request):
 
 class OfficeListView(ListView):
     def get_queryset(self):
-        slug = self.kwargs.get('slug')
+        slug = self.kwargs.get("slug")
+        print("slug::", slug)
         if slug:
             queryset = Prospect.objects.filter(
                     Q(city__iexact=slug) |
@@ -53,6 +46,7 @@ class OfficeListView(ListView):
             )
         else:
             queryset = Prospect.objects.all()
+            # queryset = Prospect.objects.all().delete()
         return queryset
 
 
@@ -63,3 +57,9 @@ class OfficeDetailView(DetailView):
     #     off_id = self.kwargs.get('off_id')
     #     obj = get_object_or_404(Office, id=off_id) # pk = off_id
     #     return obj
+
+
+class ProspectCreateView(CreateView):
+    form_class = ProspectModelCreateForm
+    template_name = 'offices/prospect_form.html'
+    success_url = "/prospects/"
