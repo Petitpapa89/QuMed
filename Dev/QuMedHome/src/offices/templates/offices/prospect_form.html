@@ -6,8 +6,8 @@
 
 <h1>Enquire about QuMed App</h1>
 
-{% if errors %}
-{{ errors }}
+{% if form.errors.non_field_errors %}
+{{ form.errors.non_field_errors }}
 {% endif %}
 <form method="POST"> {% csrf_token %}
     {{ form.as_p }}

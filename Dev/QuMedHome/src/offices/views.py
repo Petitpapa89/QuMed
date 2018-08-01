@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View
 from django.views.generic.base import TemplateView
-from django.views.generic import TemplateView, DetailView, CreateView , ListView
+from django.views.generic import TemplateView, DetailView, CreateView, ListView
 # from django.views.generic.list import ListView
 
 from .forms import ProspectCreateForm, ProspectModelCreateForm
@@ -38,7 +38,6 @@ def office_list_view(request):
 class OfficeListView(ListView):
     def get_queryset(self):
         slug = self.kwargs.get("slug")
-        print("slug::", slug)
         if slug:
             queryset = Prospect.objects.filter(
                     Q(city__iexact=slug) |
@@ -52,11 +51,6 @@ class OfficeListView(ListView):
 
 class OfficeDetailView(DetailView):
     queryset = Prospect.objects.all()  # filter(country__iexact='USA')
-
-    # def get_object(self, *args, **kwargs):
-    #     off_id = self.kwargs.get('off_id')
-    #     obj = get_object_or_404(Office, id=off_id) # pk = off_id
-    #     return obj
 
 
 class ProspectCreateView(CreateView):

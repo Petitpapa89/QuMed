@@ -10,14 +10,14 @@ phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
 
 
 class Prospect(models.Model):
-    first_name = models.CharField(max_length=120, null=True, blank=True)
-    last_name = models.CharField(max_length=120, null=True, blank=True)
-    business_email = models.EmailField(max_length=120, null=True, blank=True)
-    company_name = models.CharField(max_length=120, null=True, blank=True)
+    first_name = models.CharField(max_length=120, null=False, blank=False)
+    last_name = models.CharField(max_length=120, null=False, blank=False)
+    business_email = models.EmailField(max_length=120, null=False, blank=False)
+    company_name = models.CharField(max_length=120, null=False, blank=False)
     job_title = models.CharField(max_length=120, null=True, blank=True)
-    phone_number = models.CharField(validators=[phone_regex], max_length=17, null=True, blank=True)  # validators should be a list
-    city = models.CharField(max_length=120, null=True, blank=True)
-    state = models.CharField(max_length=120, null=True, blank=True)
+    phone_number = models.CharField(validators=[phone_regex], max_length=17, null=False, blank=False)  # validators should be a list
+    city = models.CharField(max_length=120, null=False, blank=False)
+    state = models.CharField(max_length=120, null=False, blank=False)
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 

@@ -1,6 +1,7 @@
 from django import forms
 from django.core.validators import RegexValidator
 from .models import Prospect
+from .validators import validate_job_title
 
 # Create your models here.
 phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
@@ -20,13 +21,16 @@ class ProspectCreateForm(forms.Form):
     comment = forms.CharField(required=False)
 
     def clean_name(self):
-        name = self.cleaned_data.get('name')
+        name = self.cleaned_data.get('first_name')
         if name == "Hello":
             raise forms.ValidationError("Not a valid name")
         return name
 
 
 class ProspectModelCreateForm(forms.ModelForm):
+    email = forms.EmailField()
+    job_title = forms.CharField(validators=[validate_job_title])
+
     class Meta:
         model = Prospect
         fields = [
@@ -39,3 +43,15 @@ class ProspectModelCreateForm(forms.ModelForm):
             'city',
             'state',
         ]
+
+    def clean_name(self):
+        name = self.cleaned_data.get('first_name')
+        if name == "Hello":
+            raise forms.ValidationError("Not a valid name")
+        return name
+
+        # def clean_email(self):
+        #     email = self.cleaned_data.get('email')
+        #     if ".edu" in email:
+        #         raise forms.ValidationError("We do not accept edu emails")
+        #     return email
