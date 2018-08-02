@@ -28,8 +28,8 @@ class ProspectCreateForm(forms.Form):
 
 
 class ProspectModelCreateForm(forms.ModelForm):
-    email = forms.EmailField()
-    job_title = forms.CharField(validators=[validate_job_title])
+    # email = forms.EmailField()
+    # job_title = forms.CharField(validators=[validate_job_title])
 
     class Meta:
         model = Prospect

@@ -20,7 +20,8 @@ JOBTTILE = ['Dev', 'Sales', 'CSR']
 
 
 def validate_job_title(value):
-    if value not in JOBTTILE:
+    title = value.capitalize()
+    if value not in JOBTTILE and title not in JOBTTILE:
         raise ValidationError(
                 "{} is not a valid job title".format(value)
         )
