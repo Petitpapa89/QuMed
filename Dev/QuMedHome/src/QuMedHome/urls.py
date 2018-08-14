@@ -36,5 +36,5 @@ urlpatterns = [
     url(r'^products/$', TemplateView.as_view(template_name="products.html")),
     # url(r'^contact/$', TemplateView.as_view(template_name="contact.html")),
 
-    url(r'^create/$', ProspectCreateView.as_view()),
+    url(r'^create/$', prospect_create_view)#ProspectCreateView.as_view()),
 ]

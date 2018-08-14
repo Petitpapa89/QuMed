@@ -14,7 +14,7 @@ phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
 
 
 class Prospect(models.Model):
-    owner = models.ForeignKey(User) # setting certain users as owners of prospects
+    owner = models.ForeignKey(User) # setting certain users as owners of prospects # django models unleashed
     first_name = models.CharField(max_length=120, null=False, blank=False)
     last_name = models.CharField(max_length=120, null=False, blank=False)
     business_email = models.EmailField(max_length=120, null=False, blank=False)
