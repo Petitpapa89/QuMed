@@ -1,7 +1,9 @@
 import random
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
-from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404
 from django.views import View
 from django.views.generic.base import TemplateView
 from django.views.generic import TemplateView, DetailView, CreateView, ListView
@@ -11,11 +13,12 @@ from .forms import ProspectCreateForm, ProspectModelCreateForm
 from .models import Prospect
 
 
+@login_required()  # we wont need to this site, but nice to know how
 def prospect_create_view(request):
     form = ProspectModelCreateForm(request.POST or None)
     errors = None
     if form.is_valid():
-        if request.user.is_authenticated():
+        if request.user.is_authenticated():  # idk if we'll need this for the corp site
             instance = form.save(commit=False)
             instance.owner = request.user
             instance.save()
@@ -44,8 +47,8 @@ class OfficeListView(ListView):
         slug = self.kwargs.get("slug")
         if slug:
             queryset = Prospect.objects.filter(
-                    Q(city__iexact=slug) |
-                    Q(city__icontains=slug)
+                Q(city__iexact=slug) |
+                Q(city__icontains=slug)
             )
         else:
             queryset = Prospect.objects.all()
