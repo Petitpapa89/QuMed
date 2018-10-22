@@ -13,18 +13,22 @@ from .forms import ProspectCreateForm, ProspectModelCreateForm
 from .models import Prospect
 
 
-@login_required()  # we wont need to this site, but nice to know how
+# @login_required()  # we wont need to this site, but nice to know how
 def prospect_create_view(request):
     form = ProspectModelCreateForm(request.POST or None)
     errors = None
     if form.is_valid():
-        if request.user.is_authenticated():  # idk if we'll need this for the corp site
-            instance = form.save(commit=False)
-            instance.owner = request.user
-            instance.save()
-            return HttpResponseRedirect("/prospects/")
-        else:
-            return HttpResponseRedirect("/login/")
+        instance = form.save(commit=False)
+        instance.owner = request.user
+        instance.save()
+        return HttpResponseRedirect("/prospects/")
+        # if request.user.is_authenticated():  # idk if we'll need this for the corp site
+        #     instance = form.save(commit=False)
+        #     instance.owner = request.user
+        #     instance.save()
+        #     return HttpResponseRedirect("/prospects/")
+        # else:
+        #     return HttpResponseRedirect("/login/")
     if form.errors:
         errors = form.errors
 

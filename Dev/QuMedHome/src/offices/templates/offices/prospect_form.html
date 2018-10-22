@@ -10,7 +10,13 @@
 {{ form.errors.non_field_errors }}
 {% endif %}
 <form method="POST"> {% csrf_token %}
-    {{ form.as_p }}
+    <div class="form-container">
+        <!--{% for item in form %}-->
+        <!--<div class="form-group"> {{item}} </div>-->
+        <!--{% endfor %}-->
+        {{ form.as_p }}
+    </div>
+    <!--{{ form.as_p }}-->
     <button type="submit">Save</button>
 </form>
 

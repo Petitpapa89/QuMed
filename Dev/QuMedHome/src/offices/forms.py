@@ -9,9 +9,9 @@ phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
 
 
 class ProspectCreateForm(forms.Form):
-    first_name = forms.CharField(required=True)
-    last_name = forms.CharField(required=False)
-    business_email = forms.EmailField(required=False)
+    first_name      = forms.CharField(required=True)
+    last_name       = forms.CharField(required=False)
+    business_email  = forms.EmailField(required=False)
     company_name = forms.CharField(required=False)
     job_title = forms.CharField(required=False)
     phone_number = forms.CharField(validators=[phone_regex], max_length=17,
