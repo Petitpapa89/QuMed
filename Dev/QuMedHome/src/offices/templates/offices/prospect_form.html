@@ -1,33 +1,37 @@
-{% extends "base.html" %}
+<div class=""> <!--add background color here -->
 
-{% block head_title %} Enquire about QuMed App|| {{ block.super}}{% endblock head_title %}
+    {% extends "base.html" %}
 
-{% block content %}
+    {% block head_title %} Enquire about QuMed App|| {{ block.super}}{% endblock head_title %}
 
-<h1>Enquire about QuMed App</h1>
+    {% block content %}
 
-{% if form.errors.non_field_errors %}
-{{ form.errors.non_field_errors }}
-{% endif %}
-<form method="POST"> {% csrf_token %}
-    <div class="form-container">
-        <!--{% for item in form %}-->
-        <!--<div class="form-group"> {{item}} </div>-->
-        <!--{% endfor %}-->
-        {{ form.as_p }}
-    </div>
-    <!--{{ form.as_p }}-->
-    <button type="submit">Save</button>
-</form>
 
-{% endblock content %}
+    <p class="center mt-0">We look forward to speaking with you. Please provide the following information to get
+        started.</p>
 
-<!--<input type="text" name="first_name" placeholder="First Name"><br/>-->
-<!--<input type="text" name="last_name" placeholder="Last Name"><br/>-->
-<!--<input type="text" name="business_email" placeholder="Email"><br/>-->
-<!--<input type="text" name="company_name" placeholder="Company Name"><br/>-->
-<!--<input type="text" name="job_title" placeholder="Job Title"><br/>-->
-<!--<input type="text" name="phone_number" placeholder="5553334444"><br/>-->
-<!--<input type="text" name="city" placeholder="City"><br/>-->
-<!--<input type="text" name="state" placeholder="State"><br/>-->
-<!--<input type="text" name="comment" placeholder="Comment"><br/>-->
+
+    {% if form.errors.non_field_errors %}
+    {{ form.errors.non_field_errors }}
+    {% endif %}
+    <form method="POST"> {% csrf_token %}
+        <!--<div class="form-group center">-->
+        <!--{{ form.as_p }}-->
+        <!--</div>-->
+        <div class="form-row">
+            {% for field in form %}
+            <div class="fieldWrapper form-group col-lg-6">
+                {{ field.errors }}
+                {{ field.label_tag }} {{ field }}
+                {% if field.help_text %}
+                <p class="help">{{ field.help_text|safe }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+
+    {% endblock content %}
+</div>
