@@ -15,9 +15,6 @@
     {{ form.errors.non_field_errors }}
     {% endif %}
     <form method="POST"> {% csrf_token %}
-        <!--<div class="form-group center">-->
-        <!--{{ form.as_p }}-->
-        <!--</div>-->
         <div class="form-row">
             {% for field in form %}
             <div class="fieldWrapper form-group col-lg-6">
