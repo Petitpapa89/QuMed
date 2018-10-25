@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.views.generic.base import TemplateView
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from offices.views import (office_list_view,
                            OfficeListView,
@@ -39,3 +40,5 @@ urlpatterns = [
     url(r'^create/$', prospect_create_view, name='create'),#ProspectCreateView.as_view()),
     # url(r'^create/$', ProspectCreateView.as_view()),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
