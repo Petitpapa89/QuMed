@@ -19,7 +19,7 @@ def prospect_create_view(request):
     errors = None
     if form.is_valid():
         instance = form.save(commit=False)
-        instance.owner = request.user
+        # instance.owner = request.user
         instance.save()
         return HttpResponseRedirect("/prospects/")
         # if request.user.is_authenticated():  # idk if we'll need this for the corp site
