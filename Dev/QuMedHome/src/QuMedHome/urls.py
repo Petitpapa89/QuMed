@@ -30,6 +30,8 @@ urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='home.html'), name='home'),
     url(r'^about/$', TemplateView.as_view(template_name="aboutQumed.html"), name='about'),
 
+    url(r'^confirmation/$', TemplateView.as_view(template_name="confirmation_modal.html"), name='confirmation'), # modal
+
     url(r'^prospects/$', OfficeListView.as_view(), name='prospects'),
     # url(r'^prospects/$', ProspectCreateView.as_view()),
     url(r'^offices/(?P<slug>[\w-]+)/$', OfficeDetailView.as_view()),
@@ -37,7 +39,7 @@ urlpatterns = [
     url(r'^products/$', TemplateView.as_view(template_name="products.html"), name='products'),
     # url(r'^contact/$', TemplateView.as_view(template_name="contact.html")),
 
-    url(r'^create/$', prospect_create_view, name='create'),#ProspectCreateView.as_view()),
+    url(r'^create/$', prospect_create_view, name='create'),  # ProspectCreateView.as_view()),
     # url(r'^create/$', ProspectCreateView.as_view()),
 ]
 

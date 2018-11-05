@@ -21,7 +21,9 @@ def prospect_create_view(request):
         instance = form.save(commit=False)
         # instance.owner = request.user
         instance.save()
-        return HttpResponseRedirect("/prospects/")
+        return HttpResponseRedirect("/confirmation/")
+        # return HttpResponseRedirect("/prospects/")
+
         # if request.user.is_authenticated():  # idk if we'll need this for the corp site
         #     instance = form.save(commit=False)
         #     instance.owner = request.user
@@ -33,6 +35,7 @@ def prospect_create_view(request):
         errors = form.errors
 
     template_name = 'offices/prospect_form.html'
+    template_name_modal = 'templates/confirmation_modal.html'
     context = {'form': form, 'errors': errors}
     return render(request, template_name, context)
 
