@@ -81,15 +81,23 @@ class ProspectCreateView(CreateView):
 
 
 def send_email(request):
-    subject = request.POST.get('company_name', '')
-    message = request.POST.get('message', 'New Business Inquiry')
-    from_email = request.POST.get('business_email', '')
-    to_email = ['ydjiba89@gmail.com']
+    name = request.POST.get('first_name', '') + ' ' + request.POST.get('last_name', '')
+    company = request.POST.get('company_name', '')
+    phone = request.POST.get('phone_number', '')
+    email = request.POST.get('business_email', '')
+    subject = 'New Business Inquiry From: '+request.POST.get('company_name', '')
+    message = name + company + phone + email
+    to_email = ['ydjiba89@gmail.com', request.POST.get('business_email', ''), 'cutemekive@pachilly.com'] #request.POST.get('business_email', '')
+    from_email = 'cutemekive@pachilly.com' #request.POST.get('business_email', '')
+
+    message_string = "{} from {} has made a new business inquiry about QuMed. \n" \
+                     "Contact information as follows: \n" \
+                     "Phone Number: {} \n" \
+                     "Email Address: {}".format(name, company, phone, email)
 
     if subject and message and from_email:
         try:
-            email = EmailMessage(subject=subject, body=message, to=to_email)
-            email.send()
+            send_mail(subject, message_string, from_email, to_email, fail_silently=False)
 
             msg_sent = "have email has been sent"
             print ('msg sent', msg_sent)
