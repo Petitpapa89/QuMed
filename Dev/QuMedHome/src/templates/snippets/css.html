@@ -42,8 +42,71 @@
         font-size: 1.1111em;
     }
 
-
     .text-black {
         font-weight: 900 !important;
+    }
+
+    .page-section {
+        margin-top: 5rem;
+        margin-bottom: 5rem;
+    }
+
+    @media (min-width: 992px) {
+        .intro .intro-img {
+            width: 75%;
+            float: right;
+        }
+
+        .intro .intro-text {
+            /*left: 0;*/
+            width: 60%;
+            margin-top: 3rem;
+            position: absolute;
+        }
+
+        .intro .intro-text .intro-button {
+            width: 100%;
+            left: 0;
+            position: absolute;
+            bottom: -2rem;
+        }
+    }
+
+    .section-heading {
+        text-transform: uppercase;
+    }
+
+    .section-heading .section-heading-upper {
+        display: block;
+        font-size: 1rem;
+        font-weight: 800;
+    }
+
+    .section-heading .section-heading-lower {
+        display: block;
+        font-size: 3rem;
+        font-weight: 100;
+    }
+
+    .bg-faded {
+        background-color: rgba(255, 255, 255, 0.85);
+    }
+
+    #mainNav {
+        background-color: rgba(47, 23, 15, 0.9);
+        font-family: 'Raleway';
+    }
+
+    #mainNav .navbar-brand {
+        color: #e6a756;
+    }
+
+    #mainNav .navbar-nav .nav-item .nav-link {
+        color: rgba(255, 255, 255, 0.7);
+        font-weight: 800;
+    }
+
+    #mainNav .navbar-nav .nav-item.active .nav-link {
+        color: #e6a756;
     }
 </style>

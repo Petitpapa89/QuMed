@@ -3,11 +3,31 @@
 {% block head_title %}Welcome || {{ block.super}}{% endblock head_title %}
 
 {% block content %}
-<h1>Home</h1>
 
-<p>This is {{html_var}} coming through</p>
-<p>basic home page information goes here</p>
+{% load static from staticfiles%}
 
-{{ block.super}}
+<section class="page-section clearfix">
+    <div class="container">
+        <div class="intro">
+            <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{% static 'med-img.jpg' %}"
+                 alt="First slide">
+            <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+                <h2 class="section-heading mb-4">
+                    <span class="section-heading-upper">Welcome to QuMed</span>
+                </h2>
+                <h2>Our mission is to improve efficiency and workflow in the medical industry</h2>
+                <p>In any medical situation, it can be crucial to seek help quickly. We help medical professionals
+                    provide immediate
+                    care to their patients, while expediting inter-office communications between medical practices
+                    using
+                    a simple,
+                    and secure platform along with the back-end efficiencies you need.</p>
+                <div class="intro-button mx-auto">
+                    <a class="btn btn-primary btn-xl" href='{% url "products" %}'>Checkout Our Products!</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 {% endblock content %}

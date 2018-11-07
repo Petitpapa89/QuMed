@@ -99,7 +99,7 @@ def send_email(request):
         try:
             send_mail(subject, message_string, from_email, to_email, fail_silently=False)
 
-            msg_sent = "have email has been sent"
+            msg_sent = "an email has been sent"
             print ('msg sent', msg_sent)
             messages.success(request, msg_sent)
         except BadHeaderError:
