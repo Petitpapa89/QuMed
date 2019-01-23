@@ -6,3 +6,5 @@ Pillow==5.0.0
 psycopg2==2.7.3.2
 pytz==2017.3
 wheel==0.24.0
+django-phonenumber-field==2.0.0
+phonenumberslite==8.9.0
