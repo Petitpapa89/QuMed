@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block head_title %}Meet The Team || {{ block.super}}{% endblock head_title %}
+
+{% block content %}
+
+{% load static from staticfiles%}
+
+<div class="container mt-0">
+    <div class="row">
+        <div class="col-lg-3 col-md-offset-1">
+            <img src="{% static 'mellisa.jpg' %}" alt="dfjdlkjfd">
+        </div>
+        <div class="col-lg-9 col-md-offset-2">
+            <h5>Melissa Winfield</h5>
+            <div>
+                <p>Product owner - add bio here for melissa</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

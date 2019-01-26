@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block head_title %}Offices || {{ block.super}}{% endblock head_title %}
+
+{% block content %}
+
+<h1>{{ object.company_name }}</h1>
+<p>{{ object.first_name }} {{ object.last_name }}</p>
+<p>{{ object.city }}</p>
+<p>{{object.state}}</p>
+<p>{{object.business_email}}</p>
+<p>{{object.timestamp}}, Updated {{object.updated|timesince}} ago</p>
+
+
+{% endblock content %}

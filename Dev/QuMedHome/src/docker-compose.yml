@@ -1,0 +1,22 @@
+version: "3"
+services:
+  db:
+    image: postgres:9.4
+    environment:
+      POSTGRES_PASSWORD: QuMedRepo
+      POSTGRES_USER: QuMedRepo
+      POSTGRES_DB: QuMedRepo
+  web:
+    build: .
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/QuMedRepo
+    ports:
+      - "8000:8000"
+    environment:
+      - "DATABASE_HOST=db"
+      - "DATABASE_NAME=QuMedRepo"
+      - "DATABASE_USER=QuMedRepo"
+      - "DATABASE_PASSWORD=QuMedRepo"
+    depends_on:
+      - db

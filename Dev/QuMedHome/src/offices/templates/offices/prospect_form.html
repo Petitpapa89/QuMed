@@ -1,0 +1,33 @@
+<div class=""> <!--add background color here -->
+
+    {% extends "base.html" %}
+
+    {% block head_title %} Enquire about QuMed App|| {{ block.super}}{% endblock head_title %}
+
+    {% block content %}
+
+
+    <p class="center mt-0">We look forward to speaking with you. Please provide the following information to get
+        started.</p>
+
+
+    {% if form.errors.non_field_errors %}
+    {{ form.errors.non_field_errors }}
+    {% endif %}
+    <form method="POST"> {% csrf_token %}
+        <div class="form-row">
+            {% for field in form %}
+            <div class="fieldWrapper form-group col-lg-6">
+                {{ field.errors }}
+                {{ field.label_tag }} {{ field }}
+                {% if field.help_text %}
+                <p class="help">{{ field.help_text|safe }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+
+        <button type="submit" class="btn btn-primary float-right" id="#submitButton">Save</button>
+    </form>
+    {% endblock content %}
+</div>
